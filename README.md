@@ -2,7 +2,7 @@
 
 A stylish and functional digital clock application featuring a neumorphic design aesthetic, built entirely with vanilla HTML, CSS, and JavaScript. This project demonstrates modern front-end techniques including CSS variables for theming and `localStorage` for persistence.
 
-![Screenshot Placeholder - Add a screenshot/gif of your clock here!]
+![Clock Demo]Clock-light.png
 *(Optional: Replace the line above with an actual screenshot link once you have one, e.g., ![Clock Demo](demo.gif))*
 
 ## Features
