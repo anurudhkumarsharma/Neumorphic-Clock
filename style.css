@@ -1,0 +1,222 @@
+:root {
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /* Light Theme (Default) */
+    --bg-light: #e0e5ec;
+    --shadow-light-light: #ffffff;
+    --shadow-dark-light: #a3b1c6;
+    --text-light: #4a5568; /* Slightly darker text for better contrast */
+    --accent-light: #6366f1;
+
+    /* Dark Theme */
+    --bg-dark: #2e323a; /* Dark background */
+    --shadow-light-dark: #3a3f4a; /* Darker background's "light" shadow */
+    --shadow-dark-dark: rgba(0, 0, 0, 0.4); /* Blackish shadow */
+    --text-dark: #bdc1c6; /* Light text for dark mode */
+    --accent-dark: #7b6ef0; /* Slightly brighter accent for dark mode */
+
+    /* Assign initial variables */
+    --background: var(--bg-light);
+    --shadow-light: var(--shadow-light-light);
+    --shadow-dark: var(--shadow-dark-light);
+    --text: var(--text-light);
+    --accent: var(--accent-light);
+
+    --transition-speed: 0.3s;
+}
+
+/* Apply dark theme variables when body has the 'dark-theme' class */
+body.dark-theme {
+    --background: var(--bg-dark);
+    --shadow-light: var(--shadow-light-dark);
+    --shadow-dark: var(--shadow-dark-dark);
+    --text: var(--text-dark);
+    --accent: var(--accent-dark);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background);
+    font-family: var(--font-family);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative; /* Needed for theme switch positioning */
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.clock-container {
+    background-color: var(--background);
+    border-radius: 24px;
+    box-shadow:
+        8px 8px 16px var(--shadow-dark),
+        -8px -8px 16px var(--shadow-light);
+    padding: 40px;
+    position: relative;
+    transition: all var(--transition-speed) ease;
+    color: var(--text); /* Ensure text color transitions */
+}
+
+/* Removed hover effect for simplicity, can be added back if desired */
+/* .clock-container:hover { ... } */
+
+.clock-inner {
+    background-color: var(--background);
+    border-radius: 16px;
+    box-shadow:
+        inset 4px 4px 8px var(--shadow-dark),
+        inset -4px -4px 8px var(--shadow-light);
+    padding: 30px 40px;
+    margin-bottom: 25px;
+    transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.time {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--text);
+    /* Optional: Adjust text shadow for dark mode if needed */
+    /* body.dark-theme .time { text-shadow: 1px 1px 2px var(--shadow-dark-dark); } */
+    text-shadow: 1px 1px 3px var(--shadow-dark);
+    letter-spacing: 2px;
+    transition: color var(--transition-speed) ease, text-shadow var(--transition-speed) ease;
+}
+
+.date {
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-top: 10px;
+    font-weight: 500;
+     transition: color var(--transition-speed) ease;
+}
+
+.separator {
+    animation: blink 1s infinite;
+     /* Ensure separator color matches text */
+     color: var(--text);
+     transition: color var(--transition-speed) ease;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.button {
+    background-color: var(--background);
+    border-radius: 12px;
+    box-shadow:
+        5px 5px 10px var(--shadow-dark),
+        -5px -5px 10px var(--shadow-light);
+    padding: 12px 24px;
+    border: none;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease; /* Keep button press snappy */
+    margin: 0 10px;
+    outline: none;
+}
+
+.button:active {
+    box-shadow:
+        inset 3px 3px 6px var(--shadow-dark),
+        inset -3px -3px 6px var(--shadow-light);
+     color: var(--accent); /* Use accent on press */
+}
+
+.button.active {
+    box-shadow:
+        inset 3px 3px 6px var(--shadow-dark),
+        inset -3px -3px 6px var(--shadow-light);
+    color: var(--accent);
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+}
+
+.mode-indicator {
+    /* Removed this as it's replaced by the theme switch */
+}
+
+/* --- Theme Switch Styles --- */
+.theme-switch-wrapper {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch-label {
+     margin-right: 10px;
+     font-size: 0.9rem;
+     font-weight: 500;
+     color: var(--text);
+     transition: color var(--transition-speed) ease;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 26px; /* Slightly smaller */
+    position: relative;
+    width: 50px; /* Slightly smaller */
+}
+
+.theme-switch input {
+    display: none; /* Hide default checkbox */
+}
+
+.slider {
+    background-color: var(--background);
+    border-radius: 34px;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: var(--transition-speed) ease;
+     /* Neumorphic inset effect for the track */
+    box-shadow:
+        inset 3px 3px 5px var(--shadow-dark),
+        inset -3px -3px 5px var(--shadow-light);
+}
+
+.slider:before {
+    background-color: var(--background);
+    border-radius: 50%;
+    bottom: 3px; /* Adjust position */
+    content: "";
+    height: 20px; /* Adjust size */
+    left: 3px; /* Adjust position */
+    position: absolute;
+    transition: var(--transition-speed) ease;
+    width: 20px; /* Adjust size */
+     /* Neumorphic outset effect for the knob */
+     box-shadow:
+        2px 2px 4px var(--shadow-dark),
+        -2px -2px 4px var(--shadow-light);
+}
+
+input:checked + .slider {
+    /* Optional: Change background of track when active? */
+    /* background-color: var(--accent); */
+}
+
+ input:checked + .slider:before {
+    transform: translateX(24px); /* Adjust travel distance */
+    background-color: var(--accent); /* Knob color changes to accent when active */
+    box-shadow: /* Inset shadow when active (optional) */
+        inset 1px 1px 2px var(--shadow-dark),
+        inset -1px -1px 2px var(--shadow-light);
+}

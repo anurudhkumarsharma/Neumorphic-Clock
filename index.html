@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neumorphic Digital Clock with Theme Switch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="theme-switch-wrapper">
+        <span class="theme-switch-label" id="theme-label-text">Light Mode</span>
+        <label class="theme-switch" for="theme-toggle">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <div class="clock-container">
+        <div class="clock-inner">
+            <div class="time text-center" id="time">00:00:00</div>
+            <div class="date text-center" id="date">Monday, January 1</div>
+        </div>
+        <div class="controls">
+            <button class="button active" id="btn24h">24H</button>
+            <button class="button" id="btn12h">12H</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
